@@ -1,0 +1,37 @@
+<h1 mat>Inserimento libro</h1>
+
+<hr>
+
+<form [formGroup]="formAggiunta" (ngSubmit)="confermaInserimento()">
+    
+    <mat-form-field>
+        <mat-label>Titolo</mat-label>
+        <input matInput type="text" formControlName="titolo">
+    </mat-form-field>   
+
+    <br>
+
+    <mat-form-field>
+        <mat-label>Autore</mat-label>
+        <input matInput type="text" formControlName="autore">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
+        <mat-label>Tipo</mat-label>
+        
+        <mat-select name="tipo" id="idTipo" formControlName="tipo">
+            <mat-option value="Guida Utente">Guida Utente</mat-option>
+            <mat-option value="Manuale">Manuale</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <br>
+
+    <button mat-raised-button color="primary" type="submit">Inserisci</button>
+  </form>
+
+
+
+  

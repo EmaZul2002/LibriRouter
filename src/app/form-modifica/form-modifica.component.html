@@ -1,0 +1,11 @@
+<h1>Modifica Libro</h1>
+
+<form [formGroup]="formModifica" (ngSubmit)="confermaModifiche()">
+    <hr>
+    ID: <input type="number" [disabled]="true" formControlName="id">
+    Titolo: <input type="text" formControlName="titolo">
+    Autore: <input type="text" formControlName="autore">
+    Tipo: <input type="text" formControlName="tipo">
+    <button type="submit">Conferma</button>
+    <button [routerLink]="['/Elenco']">Indietro</button>
+</form>

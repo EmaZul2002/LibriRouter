@@ -1,0 +1,47 @@
+<nav mat-tab-nav-bar [tabPanel]="tabPanel">
+  <a mat-tab-link *ngFor="let link of navLinks"
+  [routerLink]="link" 
+  routerLinkActive 
+  #rla="routerLinkActive"
+  [active]="rla.isActive">
+  {{link}}
+  </a>
+</nav>
+
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div *ngIf="visualizzaFormElenco">
+  <button (click)="cambiaVisualizzazione()" mat-raised-button color="primary">Aggiungi Libro</button>
+</div>
+  
+<div *ngIf="!visualizzaFormElenco">
+  <button (click)="cambiaVisualizzazione()" mat-raised-button color="primary">Annulla</button>
+</div>
+
+<app-elenco [elencoLibri]="elencoLibri" *ngIf="visualizzaFormElenco; else casoFalso">
+<app-elenco [elencoLibri]="this.datiService.getLibri()" *ngIf="visualizzaFormElenco; else casoFalso">
+</app-elenco>
+
+
+<ng-template #casoFalso>
+  <app-form (submitEvent)="inserisciLibro($event)">
+  </app-form>
+</ng-template> -->

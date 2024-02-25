@@ -1,0 +1,7 @@
+<h1>Cerca Libro</h1>
+
+<form [formGroup]="formRicerca" (ngSubmit)="getJsonById()">
+    <input type="number" formControlName="id" min="1" placeholder="Inserisci numero ID">
+
+    <button type="submit">Cerca libro per ID</button>
+

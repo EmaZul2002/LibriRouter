@@ -1,0 +1,21 @@
+
+<h1>Elenco libri</h1>
+
+<hr>
+
+<div *ngFor="let j of json$ | async">
+    Id: {{j.id}}
+    <br>
+    Autore: {{j.titolo}}
+    <br>
+    Titolo: {{j.autore}}
+    <br>
+    Tipo: {{j.tipo}}
+    <br>
+    <button [routerLink]="['/Modifica',j.id]">Modifica</button>
+    <button (click)="delJsonById(j.id)">Elimina</button>
+    <hr>
+</div>
+
+
+
