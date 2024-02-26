@@ -12,14 +12,12 @@ import { MaterialModule } from './material.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { CercaComponent } from './cerca/cerca.component';
-import { FormModificaComponent } from './form-modifica/form-modifica.component';
 @NgModule({
   declarations: [
     AppComponent,
     FormComponent,
     ElencoComponent,
-    CercaComponent,
-    FormModificaComponent
+    CercaComponent
   ],
   imports: [
     BrowserModule,

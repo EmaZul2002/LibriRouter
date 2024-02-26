@@ -1,48 +1,57 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Libro } from '../domain/Libro';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { JsonService } from '../service/json.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Libro } from '../domain/Libro';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
 })
-export class FormComponent implements OnInit {
-  @Output() submitEvent = new EventEmitter<Libro>()
+export class FormComponent {
+  formModifica : FormGroup
 
-  id : number = undefined
-  titolo : string = ""
-  autore : string = ""
-  tipo : string = ""
-
-  constructor (public jsonService : JsonService) {}
-
-  formAggiunta : FormGroup
+  constructor(public jsonService : JsonService, public route : ActivatedRoute, public router : Router) {}
 
   ngOnInit() {
-    this.formAggiunta = new FormGroup({
-      titolo : new FormControl('', [Validators.required]),
-      autore : new FormControl('', [Validators.required]),
-      tipo : new FormControl('', [Validators.required])
+    this.formModifica = new FormGroup({
+      id: new FormControl('', [Validators.required, Validators.min(1)]),
+      titolo: new FormControl('', [Validators.required]),
+      autore: new FormControl('', [Validators.required]),
+      tipo: new FormControl('', [Validators.required])
     })
+    this.route.params.subscribe(params => {
+      if (params["id"] != undefined){
+        this.updateJsonById(params["id"])
+      }
+    })
+    this.formModifica.get("id").disable()
   }
 
-  confermaInserimento() {
-    let libro : Libro = {
-      id : 0,
-      titolo : this.formAggiunta.get('titolo').value,
-      autore : this.formAggiunta.get('autore').value,
-      tipo : this.formAggiunta.get('tipo').value
-    }
-    
-    delete libro.id
-    this.jsonService.postJson(libro).subscribe(
+  updateJsonById(id) {
+    this.jsonService.getJsonById(id).subscribe(
       data => {
-        this.ngOnInit()
-        alert("Libro inserito")
+        this.formModifica.get('id').setValue(data.id)
+        this.formModifica.get('titolo').setValue(data.titolo)
+        this.formModifica.get('autore').setValue(data.autore)
+        this.formModifica.get('tipo').setValue(data.tipo)
       }
     )
   }
-  
+
+  confermaModifiche() {
+    let libro : Libro = {
+      id : this.formModifica.get('id').value,
+      titolo : this.formModifica.get('titolo').value,
+      autore : this.formModifica.get('autore').value,
+      tipo : this.formModifica.get('tipo').value
+    }
+    this.jsonService.postJson(libro).subscribe(
+      data => {
+        alert("Libro modificato")
+        this.router.navigate(["/Elenco"])
+      }
+    )
+  }
 }
