@@ -6,7 +6,7 @@ import { CercaComponent } from './cerca/cerca.component';
 import { FormModificaComponent } from './form-modifica/form-modifica.component';
 
 const routes: Routes = [
-  {path: '', redirectTo:"Elenco Libri",pathMatch:'full'},
+  {path: '', redirectTo:"Elenco",pathMatch:'full'},
   {path:'Cerca', component:CercaComponent},
   {path: 'Aggiunta', component:FormComponent },
   {path: 'Elenco', component:ElencoComponent },

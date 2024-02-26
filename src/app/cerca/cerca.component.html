@@ -1,7 +1,39 @@
 <h1>Cerca Libro</h1>
 
 <form [formGroup]="formRicerca" (ngSubmit)="getJsonById()">
-    <input type="number" formControlName="id" min="1" placeholder="Inserisci numero ID">
+  <mat-form-field>
+    <mat-label>ID</mat-label>
+    <input matInput type="number" formControlName="id" min="1" placeholder="Inserisci numero ID">
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" type="submit">Cerca libro per ID</button>
+</form>
 
-    <button type="submit">Cerca libro per ID</button>
+<div *ngIf="libriCercati">
+  <h2>Risultati della ricerca</h2>
+  <div *ngFor="let libro of libriCercati">
+    {{libro.id}}
+    <br>
+    {{libro.titolo}}
+    <br>
+    {{libro.autore}}
+    <br>
+    {{libro.tipo}}
+  </div>
+</div>
 
+<div *ngIf="storicoRicerche.length > 0">
+  <h2>Storico delle ricerche</h2>
+  <div *ngFor="let risultati of storicoRicerche">
+    <div *ngFor="let libro of risultati">
+      {{libro.id}}
+      <br>
+      {{libro.titolo}}
+      <br>
+      {{libro.autore}}
+      <br>
+      {{libro.tipo}}
+    </div>
+    <hr>
+  </div>
+</div>

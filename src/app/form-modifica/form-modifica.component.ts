@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { JsonService } from '../service/json.service';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Libro } from '../domain/Libro';
 
 @Component({
@@ -20,6 +20,9 @@ export class FormModificaComponent {
       titolo: new FormControl('', [Validators.required]),
       autore: new FormControl('', [Validators.required]),
       tipo: new FormControl('', [Validators.required])
+    })
+    this.route.params.subscribe(params => {
+      
     })
     this.updateJsonById()
   }

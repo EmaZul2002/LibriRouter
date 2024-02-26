@@ -12,8 +12,8 @@
     <br>
     Tipo: {{j.tipo}}
     <br>
-    <button [routerLink]="['/Modifica',j.id]">Modifica</button>
-    <button (click)="delJsonById(j.id)">Elimina</button>
+    <button mat-raised-button color="primary" [routerLink]="['/Modifica',j.id]">Modifica</button>
+    <button mat-raised-button color="warn" (click)="delJsonById(j.id)">Elimina</button>
     <hr>
 </div>
 
